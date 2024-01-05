@@ -1,0 +1,43 @@
+{
+  "name": "node-ts",
+  "version": "1.0.0",
+  "description": "A template NodeJS app with TypeScript",
+  "main": "src/app.ts",
+  "scripts": {
+    "dev": "tsup src/app.ts --watch --onSuccess \"node --env-file=.env dist/app.js | pino-pretty\"",
+    "dev:debug": "tsup src/app.ts --sourcemap --watch --onSuccess \"node --env-file=.env dist/app.js\"",
+    "build": "rimraf dist && tsup src/app.ts",
+    "start": "pnpm run build && node --env-file=.env dist/app.js",
+    "prettier:write": "prettier --write --ignore-unknown .",
+    "eslint:check": "eslint \"src/**\"",
+    "eslint:fix": "eslint --fix \"src/**\"",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "Shane Wolff",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "pino-pretty": "^10.3.1",
+    "prettier": "^3.1.1",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "pino": "^8.17.2"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --cache --fix",
+    "*": "prettier --write --ignore-unknown"
+  }
+}
